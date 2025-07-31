@@ -4,7 +4,7 @@
 
 Create the local database by running this command:
 
-`psql -f create_db.sql`
+`npm run setup-db`
 
 ### 2. Set Up Environment Variables
 

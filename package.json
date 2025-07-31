@@ -1,0 +1,27 @@
+{
+  "name": "pt-be-airbnc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "setup-db": "psql -f ./db/setup.sql",
+    "seed": "node ./db/seed-run.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rebeccajopling/pt-be-airbnc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rebeccajopling/pt-be-airbnc/issues"
+  },
+  "homepage": "https://github.com/rebeccajopling/pt-be-airbnc#readme",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "pg": "^8.16.3",
+    "pg-format": "^1.0.4"
+  }
+}
