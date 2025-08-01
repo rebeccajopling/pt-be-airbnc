@@ -1,5 +1,11 @@
-const { usersData, propertyTypesData, propertiesData } = require("./data/test");
+const {
+  usersData,
+  propertyTypesData,
+  propertiesData,
+  reviewsData,
+} = require("./data/test");
 
+// users data
 const formattedUsersData = usersData.map(
   ({ first_name, surname, email, phone_number, is_host, avatar }) => [
     first_name,
@@ -11,32 +17,83 @@ const formattedUsersData = usersData.map(
   ]
 );
 
+// property types data
 const formattedPropertyTypesData = propertyTypesData.map(
   ({ property_type, description }) => [property_type, description]
 );
 
-const formattedPropertiesData = propertiesData.map(
-  ({
-    name,
-    property_type,
-    location,
-    price_per_night,
-    description,
-    host_name,
-    amenities,
-  }) => [
-    name,
-    property_type,
-    location,
-    price_per_night,
-    description,
-    host_name,
-    amenities,
-  ]
-);
+// properties data
+function createUserIdRef(userArray) {
+  const ref = {};
+  for (const user of userArray) {
+    const fullName = user.first_name + " " + user.surname;
+    ref[fullName] = user.user_id;
+  }
+  return ref;
+}
+
+function formatPropertiesData(propertiesData, userArray) {
+  const userIdRef = createUserIdRef(userArray);
+  return propertiesData.map((property) => {
+    const host_id = userIdRef[property.host_name];
+    return [
+      host_id,
+      property.name,
+      property.property_type,
+      property.location,
+      property.price_per_night,
+      property.description,
+    ];
+  });
+}
+
+// reviews data
+function createPropertyIdRef(propertiesArray) {
+  const ref = {};
+  for (const property of propertiesArray) {
+    ref[property.name] = property.property_id;
+  }
+  return ref;
+}
+
+function createGuestIdRef(userArray) {
+  const ref = {};
+  for (const user of userArray) {
+    const fullName = user.first_name + " " + user.surname;
+    ref[fullName] = user.user_id;
+  }
+  return ref;
+}
+
+function formatReviewsData(reviewsData, propertiesArray, userArray) {
+  const propertyIdRef = createPropertyIdRef(propertiesArray);
+  const guestIdRef = createGuestIdRef(userArray);
+  const formatted = reviewsData.map((review) => {
+    const property_id = propertyIdRef[review.property_name];
+    const guest_id = guestIdRef[review.guest_name];
+
+    if (!guest_id) {
+      console.error("Missing data. Failed to add review:", {
+        guest_id,
+        review,
+      });
+      return null;
+    }
+
+    return [
+      property_id,
+      guest_id,
+      review.rating,
+      review.comment,
+      review.created_at,
+    ];
+  });
+  return formatted.filter(Boolean);
+}
 
 module.exports = {
   formattedUsersData,
   formattedPropertyTypesData,
-  formattedPropertiesData,
+  formatPropertiesData,
+  formatReviewsData,
 };
