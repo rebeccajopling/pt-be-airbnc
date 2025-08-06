@@ -78,6 +78,7 @@ async function seed(usersData, propertyTypesData, propertiesData, reviewsData) {
     )
   );
 
+  // insert reviews data
   const formattedReviewsData = formatReviewsData(
     reviewsData,
     properties,
