@@ -86,4 +86,58 @@ describe("app", () => {
       });
     });
   });
+  describe("GET - /api/properties/:id", () => {
+    test("responds with status of 200", async () => {
+      const testPropertyId = 1;
+      const { body } = await request(app)
+        .get(`/api/properties/${testPropertyId}`)
+        .expect(200);
+      expect(body.property.length).toBeGreaterThan(0);
+      body.property.forEach((property) => {
+        expect(typeof property.property_id).toBe("number");
+        expect(typeof property.host_id).toBe("number");
+        expect(typeof property.name).toBe("string");
+        expect(typeof property.location).toBe("string");
+        expect(typeof property.property_type).toBe("string");
+        expect(typeof property.price_per_night).toBe("string");
+        expect(typeof property.description).toBe("string");
+      });
+    });
+  });
+  describe("GET - /api/properties/:id/reviews", () => {
+    test("responds with status of 200", async () => {
+      const testPropertyId = 1;
+      const { body } = await request(app)
+        .get(`/api/properties/${testPropertyId}/reviews`)
+        .expect(200);
+      expect(body.reviews.length).toBeGreaterThan(0);
+      body.reviews.forEach((review) => {
+        expect(typeof review.review_id).toBe("number");
+        expect(typeof review.property_id).toBe("number");
+        expect(typeof review.guest_id).toBe("number");
+        expect(typeof review.rating).toBe("number");
+        expect(typeof review.comment).toBe("string");
+        expect(typeof review.created_at).toBe("string");
+      });
+    });
+  });
+  describe("GET - /api/users/:id", () => {
+    test("responds with status of 200", async () => {
+      const testUserId = 1;
+      const { body } = await request(app)
+        .get(`/api/users/${testUserId}`)
+        .expect(200);
+      expect(body.user.length).toBeGreaterThan(0);
+      body.user.forEach((user) => {
+        expect(typeof user.user_id).toBe("number");
+        expect(typeof user.first_name).toBe("string");
+        expect(typeof user.surname).toBe("string");
+        expect(typeof user.email).toBe("string");
+        expect(typeof user.phone_number).toBe("string");
+        expect(typeof user.is_host).toBe("boolean");
+        expect(typeof user.avatar).toBe("string");
+        expect(typeof user.created_at).toBe("string");
+      });
+    });
+  });
 });
