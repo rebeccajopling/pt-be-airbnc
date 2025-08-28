@@ -92,15 +92,15 @@ describe("app", () => {
       const { body } = await request(app)
         .get(`/api/properties/${testPropertyId}`)
         .expect(200);
-      expect(body.property.length).toBeGreaterThan(0);
-      body.property.forEach((property) => {
-        expect(typeof property.property_id).toBe("number");
-        expect(typeof property.host_id).toBe("number");
-        expect(typeof property.name).toBe("string");
-        expect(typeof property.location).toBe("string");
-        expect(typeof property.property_type).toBe("string");
-        expect(typeof property.price_per_night).toBe("string");
-        expect(typeof property.description).toBe("string");
+
+      expect(body.property).toEqual({
+        property_id: 1,
+        host_id: 1,
+        name: "Modern Apartment in City Center",
+        location: "London, UK",
+        property_type: "Apartment",
+        price_per_night: "120",
+        description: "Description of Modern Apartment in City Center.",
       });
     });
   });
@@ -127,17 +127,61 @@ describe("app", () => {
       const { body } = await request(app)
         .get(`/api/users/${testUserId}`)
         .expect(200);
-      expect(body.user.length).toBeGreaterThan(0);
-      body.user.forEach((user) => {
-        expect(typeof user.user_id).toBe("number");
-        expect(typeof user.first_name).toBe("string");
-        expect(typeof user.surname).toBe("string");
-        expect(typeof user.email).toBe("string");
-        expect(typeof user.phone_number).toBe("string");
-        expect(typeof user.is_host).toBe("boolean");
-        expect(typeof user.avatar).toBe("string");
-        expect(typeof user.created_at).toBe("string");
+
+      expect(body.user).toEqual({
+        user_id: 1,
+        first_name: "Alice",
+        surname: "Johnson",
+        email: "alice@example.com",
+        phone_number: "+44 7000 111111",
+        is_host: true,
+        avatar: "https://example.com/images/alice.jpg",
+        created_at: expect.any(String),
       });
+    });
+  });
+  describe("POST - /api/properties/:id/reviews", () => {
+    test("responds with status of 201 and creates new property review", async () => {
+      const propertyId = 2;
+      const newReview = {
+        guest_id: 2,
+        rating: 5,
+        comment: "Amazing stay!",
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(newReview)
+        .expect(201);
+
+      expect(body.review).toEqual({
+        review_id: expect.any(Number),
+        property_id: propertyId,
+        guest_id: newReview.guest_id,
+        rating: newReview.rating,
+        comment: newReview.comment,
+        created_at: expect.any(String),
+      });
+    });
+  });
+  describe("DELETE - /api/reviews/:id", () => {
+    test("responds with status 204 and deletes the review", async () => {
+      const propertyId = 2;
+      const newReview = {
+        guest_id: 2,
+        rating: 5,
+        comment: "Test review for deletion",
+      };
+
+      const postResponse = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(newReview)
+        .expect(201);
+
+      const reviewId = postResponse.body.review.review_id;
+
+      await request(app).delete(`/api/reviews/${reviewId}`).expect(204);
+      await request(app).delete(`/api/reviews/${reviewId}`).expect(404);
     });
   });
 });

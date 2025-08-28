@@ -62,7 +62,7 @@ exports.fetchPropertyById = async (property_id) => {
     queryString += " WHERE property_id = $1";
   }
   const { rows } = await db.query(queryString, queryValue);
-  return rows;
+  return rows[0];
 };
 
 exports.fetchPropertyReviews = async (property_id) => {
@@ -88,7 +88,7 @@ exports.fetchUsers = async (user_id) => {
   }
 
   const { rows } = await db.query(queryString, queryValue);
-  return rows;
+  return rows[0];
 };
 
 exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
@@ -101,4 +101,23 @@ exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
 
   const { rows } = await db.query(queryString, queryValues);
   return rows[0];
+};
+
+exports.deleteReviewById = async (review_id) => {
+  const queryString = `
+    DELETE FROM reviews
+    WHERE review_id = $1
+    RETURNING *;
+  `;
+  const queryValue = [review_id];
+
+  const { rows } = await db.query(queryString, queryValue);
+
+  if (rows.length === 0) {
+    const error = new Error("Review not found");
+    error.status = 404;
+    throw error;
+  }
+
+  return;
 };

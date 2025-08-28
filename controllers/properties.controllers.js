@@ -4,6 +4,7 @@ const {
   fetchUsers,
   fetchPropertyById,
   addPropertyReview,
+  deleteReviewById,
 } = require("../models/properties.models");
 
 exports.getAllProperties = async (req, res, next) => {
@@ -16,9 +17,8 @@ exports.getAllProperties = async (req, res, next) => {
       sort,
       order
     );
-    return res.status(200).send({ properties: properties });
+    return res.status(200).send({ properties });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -27,7 +27,7 @@ exports.getPropertyById = async (req, res, next) => {
   const { id: property_id } = req.params;
   try {
     const property = await fetchPropertyById(property_id);
-    res.status(200).send({ property: property });
+    res.status(200).send({ property });
   } catch (err) {
     next(err);
   }
@@ -37,9 +37,8 @@ exports.getPropertyReviews = async (req, res, next) => {
   const { id: property_id } = req.params;
   try {
     const reviews = await fetchPropertyReviews(property_id);
-    return res.status(200).send({ reviews: reviews });
+    return res.status(200).send({ reviews });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -48,9 +47,8 @@ exports.getUsers = async (req, res, next) => {
   const { id: user_id } = req.params;
   try {
     const user = await fetchUsers(user_id);
-    return res.status(200).send({ user: user });
+    return res.status(200).send({ user });
   } catch (err) {
-    console.log(err);
     next(err);
   }
 };
@@ -68,7 +66,17 @@ exports.postPropertyReview = async (req, res, next) => {
     );
     res.status(201).send({ review: newReview });
   } catch (err) {
-    console.log(err);
+    next(err);
+  }
+};
+
+exports.deleteReview = async (req, res, next) => {
+  const { id: review_id } = req.params;
+
+  try {
+    await deleteReviewById(review_id);
+    res.status(204).send();
+  } catch (err) {
     next(err);
   }
 };
