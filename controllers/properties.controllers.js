@@ -36,6 +36,7 @@ exports.getPropertyById = async (req, res, next) => {
 exports.getPropertyReviews = async (req, res, next) => {
   const { id: property_id } = req.params;
   try {
+    await fetchPropertyById(property_id);
     const reviews = await fetchPropertyReviews(property_id);
     return res.status(200).send({ reviews });
   } catch (err) {
@@ -56,6 +57,19 @@ exports.getUsers = async (req, res, next) => {
 exports.postPropertyReview = async (req, res, next) => {
   const { id: property_id } = req.params;
   const { guest_id, rating, comment } = req.body;
+
+  if (
+    !guest_id ||
+    typeof guest_id !== "number" ||
+    !rating ||
+    typeof rating !== "number" ||
+    !comment ||
+    typeof comment !== "string"
+  ) {
+    const err = new Error("Bad Request");
+    err.code = "22P02";
+    return next(err);
+  }
 
   try {
     const newReview = await addPropertyReview(

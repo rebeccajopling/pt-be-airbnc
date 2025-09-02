@@ -62,6 +62,9 @@ exports.fetchPropertyById = async (property_id) => {
     queryString += " WHERE property_id = $1";
   }
   const { rows } = await db.query(queryString, queryValue);
+  if (!rows.length) {
+    return Promise.reject({ status: 404, msg: "Property Not Found" });
+  }
   return rows[0];
 };
 
@@ -88,6 +91,9 @@ exports.fetchUsers = async (user_id) => {
   }
 
   const { rows } = await db.query(queryString, queryValue);
+  if (!rows.length) {
+    return Promise.reject({ status: 404, msg: "User Not Found" });
+  }
   return rows[0];
 };
 

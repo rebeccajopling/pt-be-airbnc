@@ -86,6 +86,7 @@ describe("app", () => {
       });
     });
   });
+
   describe("GET - /api/properties/:id", () => {
     test("responds with status of 200", async () => {
       const testPropertyId = 1;
@@ -103,7 +104,21 @@ describe("app", () => {
         description: "Description of Modern Apartment in City Center.",
       });
     });
+    // errors
+    test("responds with status of 400 and error message of 'Bad Request' for invalid property_id", async () => {
+      const { body } = await request(app)
+        .get("/api/properties/invalid-id")
+        .expect(400);
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 404 and error message of 'Property Not Found'", async () => {
+      const { body } = await request(app)
+        .get("/api/properties/999")
+        .expect(404);
+      expect(body.msg).toBe("Property Not Found");
+    });
   });
+
   describe("GET - /api/properties/:id/reviews", () => {
     test("responds with status of 200", async () => {
       const testPropertyId = 1;
@@ -120,7 +135,21 @@ describe("app", () => {
         expect(typeof review.created_at).toBe("string");
       });
     });
+    // errors
+    test("responds with status of 400 and error message of 'Bad Request' for invalid property_id", async () => {
+      const { body } = await request(app)
+        .get("/api/properties/invalid-id/reviews")
+        .expect(400);
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 404 and error message of 'Property Not Found' when property does not exist", async () => {
+      const { body } = await request(app)
+        .get("/api/properties/999/reviews")
+        .expect(404);
+      expect(body.msg).toBe("Property Not Found");
+    });
   });
+
   describe("GET - /api/users/:id", () => {
     test("responds with status of 200", async () => {
       const testUserId = 1;
@@ -139,7 +168,19 @@ describe("app", () => {
         created_at: expect.any(String),
       });
     });
+    // errors
+    test("responds with status of 400 and error message of 'Bad Request' for invalid user_id", async () => {
+      const { body } = await request(app)
+        .get("/api/users/invalid-id")
+        .expect(400);
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 404 and error message of 'User Not Found' when user does not exist", async () => {
+      const { body } = await request(app).get("/api/users/999").expect(404);
+      expect(body.msg).toBe("User Not Found");
+    });
   });
+
   describe("POST - /api/properties/:id/reviews", () => {
     test("responds with status of 201 and creates new property review", async () => {
       const propertyId = 2;
@@ -163,9 +204,85 @@ describe("app", () => {
         created_at: expect.any(String),
       });
     });
+    // errors
+    test("responds with status of 400 and error message 'Bad Request' when required fields are missing", async () => {
+      const propertyId = 2;
+      const invalidReview = {
+        rating: 5,
+        comment: "Amazing stay!",
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(invalidReview)
+        .expect(400);
+
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 400 and error message 'Bad Request' for invalid guest_id", async () => {
+      const propertyId = 2;
+      const invalidReview = {
+        guest_id: "invalid_id",
+        rating: 5,
+        comment: "Amazing stay!",
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(invalidReview)
+        .expect(400);
+
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 400 and error message 'Bad Request' for invalid rating", async () => {
+      const propertyId = 2;
+      const invalidReview = {
+        guest_id: 2,
+        rating: "invalig_rating",
+        comment: "Amazing stay!",
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(invalidReview)
+        .expect(400);
+
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 400 and error message 'Bad Request' for invalid comment", async () => {
+      const propertyId = 2;
+      const invalidReview = {
+        guest_id: 2,
+        rating: 5,
+        comment: 12345,
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(invalidReview)
+        .expect(400);
+
+      expect(body.msg).toBe("Bad Request");
+    });
+    test("responds with status of 404 and error message 'Property Not Found' when property does not exist", async () => {
+      const propertyId = 999;
+      const newReview = {
+        guest_id: 2,
+        rating: 5,
+        comment: "Amazing stay!",
+      };
+
+      const { body } = await request(app)
+        .post(`/api/properties/${propertyId}/reviews`)
+        .send(newReview)
+        .expect(404);
+
+      expect(body.msg).toBe("Property Not Found");
+    });
   });
+
   describe("DELETE - /api/reviews/:id", () => {
-    test("responds with status 204 and deletes the review", async () => {
+    test("responds with status of 204 and deletes the review", async () => {
       const propertyId = 2;
       const newReview = {
         guest_id: 2,
