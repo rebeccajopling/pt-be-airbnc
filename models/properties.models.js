@@ -1,5 +1,12 @@
 const db = require("../db/connection");
 
+exports.getValidPropertyTypes = async () => {
+  const result = await db.query(`
+    SELECT property_type FROM property_types;
+  `);
+  return result.rows.map((row) => row.property_type);
+};
+
 exports.fetchAllProperties = async (
   property_type,
   minprice,
@@ -7,6 +14,28 @@ exports.fetchAllProperties = async (
   sort,
   order
 ) => {
+  if (property_type) {
+    const validPropertyTypes = await this.getValidPropertyTypes();
+    if (!validPropertyTypes.includes(property_type)) {
+      return Promise.reject({ status: 400, msg: "Bad Request" });
+    }
+  }
+
+  if (minprice && isNaN(Number(minprice))) {
+    return Promise.reject({ status: 400, msg: "Bad Request" });
+  }
+
+  if (maxprice && isNaN(Number(maxprice))) {
+    return Promise.reject({ status: 400, msg: "Bad Request" });
+  }
+
+  if (sort && sort !== "cost_per_night") {
+    return Promise.reject({
+      status: 400,
+      msg: "Bad Request",
+    });
+  }
+
   let queryString = "SELECT * FROM properties";
   const queryValue = [];
 
@@ -35,13 +64,7 @@ exports.fetchAllProperties = async (
     queryString += ` price_per_night <= $${queryValue.length}`;
   }
 
-  if (sort) {
-    if (sort !== "cost_per_night") {
-      throw new Error(
-        "Invalid 'sort' value. Only 'cost_per_night' is supported."
-      );
-    }
-
+  if (sort === "cost_per_night") {
     let sortOrder = "ASC";
     if (order === "descending") {
       sortOrder = "DESC";
@@ -115,15 +138,12 @@ exports.deleteReviewById = async (review_id) => {
     WHERE review_id = $1
     RETURNING *;
   `;
-  const queryValue = [review_id];
 
+  const queryValue = [review_id];
   const { rows } = await db.query(queryString, queryValue);
 
   if (rows.length === 0) {
-    const error = new Error("Review not found");
-    error.status = 404;
-    throw error;
+    return Promise.reject({ status: 404, msg: "Review Not Found" });
   }
-
   return;
 };
