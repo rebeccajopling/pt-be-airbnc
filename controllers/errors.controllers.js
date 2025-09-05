@@ -6,11 +6,7 @@ exports.handleBadRequests = (err, req, res, next) => {
   if (err.code === "22P02") {
     res.status(400).send({ msg: "Bad Request" });
   } else if (err.code === "23503") {
-    if (err.constraint === "reviews_property_id_fkey") {
-      res.status(404).send({ msg: "Property Not Found" });
-    } else if (err.constraint === "reviews_guest_id_fkey") {
-      res.status(404).send({ msg: "User Not Found" });
-    }
+    res.status(404).send({ msg: "Resource Not Found" });
   } else {
     next(err);
   }

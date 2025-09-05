@@ -1,4 +1,5 @@
 const db = require("../db/connection");
+const { checkExists } = require("../db/utils");
 
 exports.getValidPropertyTypes = async () => {
   const result = await db.query(`
@@ -77,50 +78,52 @@ exports.fetchAllProperties = async (
 };
 
 exports.fetchPropertyById = async (property_id) => {
-  let queryString = "SELECT * FROM properties";
-  const queryValue = [];
+  await checkExists(
+    "properties",
+    "property_id",
+    property_id,
+    "Property Not Found"
+  );
+  const queryString = "SELECT * FROM properties WHERE property_id = $1";
+  const queryValue = [property_id];
 
-  if (property_id) {
-    queryValue.push(property_id);
-    queryString += " WHERE property_id = $1";
-  }
   const { rows } = await db.query(queryString, queryValue);
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "Property Not Found" });
-  }
   return rows[0];
 };
 
 exports.fetchPropertyReviews = async (property_id) => {
-  let queryString = "SELECT * FROM reviews";
-  const queryValue = [];
+  await checkExists(
+    "properties",
+    "property_id",
+    property_id,
+    "Property Not Found"
+  );
+  const queryString = "SELECT * FROM reviews WHERE property_id = $1";
+  const queryValues = [property_id];
 
-  if (property_id) {
-    queryValue.push(property_id);
-    queryString += " WHERE property_id = $1";
-  }
-
-  const { rows } = await db.query(queryString, queryValue);
+  const { rows } = await db.query(queryString, queryValues);
   return rows;
 };
 
 exports.fetchUsers = async (user_id) => {
-  let queryString = "SELECT * FROM users";
-  const queryValue = [];
+  await checkExists("users", "user_id", user_id, "User Not Found");
 
-  if (user_id) {
-    queryValue.push(user_id);
-    queryString += " WHERE user_id = $1";
-  }
+  const queryString = "SELECT * FROM users WHERE user_id = $1";
+  const queryValue = [user_id];
 
   const { rows } = await db.query(queryString, queryValue);
-  if (!rows.length) {
-    return Promise.reject({ status: 404, msg: "User Not Found" });
-  }
   return rows[0];
 };
 
 exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
+  await checkExists(
+    "properties",
+    "property_id",
+    property_id,
+    "Property Not Found"
+  );
+  await checkExists("users", "user_id", guest_id, "User Not Found");
+
   const queryString = `
     INSERT INTO reviews (property_id, guest_id, rating, comment)
     VALUES ($1, $2, $3, $4)
@@ -133,17 +136,15 @@ exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
 };
 
 exports.deleteReviewById = async (review_id) => {
+  await checkExists("reviews", "review_id", review_id, "Review Not Found");
+
   const queryString = `
     DELETE FROM reviews
     WHERE review_id = $1
     RETURNING *;
   `;
 
-  const queryValue = [review_id];
-  const { rows } = await db.query(queryString, queryValue);
-
-  if (rows.length === 0) {
-    return Promise.reject({ status: 404, msg: "Review Not Found" });
-  }
-  return;
+  const queryValues = [review_id];
+  const { rows } = await db.query(queryString, queryValues);
+  return rows;
 };

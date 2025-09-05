@@ -1,3 +1,6 @@
+const format = require("pg-format");
+const db = require("./connection");
+
 const {
   usersData,
   propertyTypesData,
@@ -91,9 +94,24 @@ function formatReviewsData(reviewsData, propertiesArray, userArray) {
   return formatted.filter(Boolean);
 }
 
+const checkExists = async (
+  table,
+  column,
+  value,
+  notFoundMsg = "Resource not found"
+) => {
+  const queryStr = format("SELECT 1 FROM %I WHERE %I = $1;", table, column);
+  const { rows } = await db.query(queryStr, [value]);
+
+  if (!rows.length) {
+    return Promise.reject({ status: 404, msg: notFoundMsg });
+  }
+};
+
 module.exports = {
   formattedUsersData,
   formattedPropertyTypesData,
   formatPropertiesData,
   formatReviewsData,
+  checkExists,
 };
