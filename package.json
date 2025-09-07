@@ -2,12 +2,16 @@
   "name": "pt-be-airbnc",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "listen.js",
   "scripts": {
     "test-utils": "jest utils.test.js",
     "test": "jest app.test.js",
-    "setup-db": "psql -f ./db/setup.sql",
+    "setup-dbs": "psql -f ./db/setup.sql",
+    "start": "node listen.js",
     "seed": "node ./db/seed-run.js",
+    "seed-dev": "node ./db/seed-run.js",
+    "seed-test": "NODE_ENV=test node ./db/seed-run.js",
+    "seed-prod": "NODE_ENV=production node ./db/seed-run.js",
     "dev": "nodemon listen.js"
   },
   "repository": {

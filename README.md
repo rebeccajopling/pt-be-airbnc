@@ -2,9 +2,9 @@
 
 ### 1. Create the Database
 
-Create the local database by running this command:
+Create the local databases (test and dev) by running this command:
 
-`npm run setup-db`
+`npm run setup-dbs`
 
 ### 2. Set Up Environment Variables
 

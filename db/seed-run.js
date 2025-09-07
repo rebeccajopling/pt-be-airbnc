@@ -4,6 +4,6 @@ const {
   propertyTypesData,
   propertiesData,
   reviewsData,
-} = require("./data/test");
+} = require("./data");
 
 seed(usersData, propertyTypesData, propertiesData, reviewsData);
