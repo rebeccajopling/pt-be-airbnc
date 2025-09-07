@@ -69,6 +69,7 @@ async function seed(usersData, propertyTypesData, propertiesData, reviewsData) {
 
   // insert properties data
   const formattedPropertiesData = formatPropertiesData(propertiesData, users);
+
   const { rows: properties } = await db.query(
     format(
       `INSERT INTO properties

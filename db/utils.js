@@ -6,7 +6,7 @@ const {
   propertyTypesData,
   propertiesData,
   reviewsData,
-} = require("./data/test");
+} = require("./data/dev");
 
 // users data
 const formattedUsersData = usersData.map(
