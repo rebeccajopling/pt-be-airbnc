@@ -1,3 +1,4 @@
+require("dotenv").config({ path: ".env.dev" });
 const app = require("./app.js");
 const { PORT = 9090 } = process.env;
 

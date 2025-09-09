@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+header {
+  background-color: #fbfbfb;
+  padding: 25px 45px;
+  width: 100%;
+  border-bottom: 1px solid #e6e7e8;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1,
+h2 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  letter-spacing: 0.01em;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+ul {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+
+.request-type-title {
+  padding: 30px 45px;
+  border-bottom: 1px solid #e6e7e8;
+  letter-spacing: 0.05rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.request {
+  background-color: #fbfbfb;
+  border: 1px solid #e6e7e8;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-family: "Google Sans Code", monospace;
+  font-size: 0.8rem;
+  display: inline-block;
+}
+
+.endpoint {
+  padding: 30px 45px 0 45px;
+}
+
+.last-endpoint {
+  padding: 30px 45px 45px 45px;
+  border-bottom: 1px solid #e6e7e8;
+}
+
+.code {
+  background-color: #d8eabb;
+  padding: 15px;
+  border-radius: 6px;
+  font-family: "Google Sans Code", monospace;
+  white-space: pre-wrap;
+  font-size: 0.7rem;
+}

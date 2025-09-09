@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device=width, initial-scale=1.0" />
+    <title>AirBnC</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-content">
+        <h1>airbnc</h1>
+        <h2>
+          |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Available Endpoints
+        </h2>
+      </div>
+    </header>
+
+    <h3 class="request-type-title">GET REQUESTS</h3>
+
+    <div class="endpoint">
+      <p class="request">GET /api/properties</p>
+      <br />
+      <br />
+      <p>Responds with an array of property objects:</p>
+      <br />
+      <pre class="code">
+<code>{
+    "properties": [
+        {
+        "property_id": 1,
+        "host_id": 1,
+        "name": "Modern Apartment in City Center",
+        "location": "London, UK",
+        "property_type": "Apartment",
+        "price_per_night": 120.0,
+        "description": "Description of Modern Apartment in City Center. A sleek apartment with all modern amenities."
+        },
+        {
+        "property_id": 2,
+        "host_id": 3,
+        "name": "Cosy Family House",
+        "location": "Manchester, UK",
+        "property_type": "House",
+        "price_per_night": 150.0,
+        "description": "A spacious home perfect for families looking to explore the city."
+        }
+        // ... more properties
+    ]
+}</code>
+</pre>
+      <br />
+      <p>Queries also available to filter properties by:</p>
+      <ul>
+        <li>Property type</li>
+        <li>Minimum price</li>
+        <li>Maximum price</li>
+        <li>Cost per night in ascending order</li>
+        <li>Cost per night in descending order</li>
+      </ul>
+    </div>
+
+    <div class="endpoint">
+      <p class="request">GET /api/properties/:id</p>
+      <br />
+      <br />
+      <p>Responds with single property object to match property_id:</p>
+      <br />
+      <pre class="code">
+<code>{
+    "property": {
+        "property_id": 1,
+        "host_id": 1,
+        "name": "Modern Apartment in City Center",
+        "location": "London, UK",
+        "property_type": "Apartment",
+        "price_per_night": 120.0,
+        "description": "Description of Modern Apartment in City Center. A sleek apartment with all modern amenities."
+    }
+}</code>
+</pre>
+    </div>
+
+    <div class="last-endpoint">
+      <p class="request">GET /api/users/:id</p>
+      <br />
+      <br />
+      <p>Responds with single user object to match user_id:</p>
+      <br />
+      <pre class="code">
+<code>{
+    "user": {
+        "user_id": 1,
+        "first_name": "Alice",
+        "surname": "Johnson",
+        "email": "alice@example.com",
+        "phone_number": "+44 7000 111111",
+        "is_host": true
+        "avatar": "https://example.com/images/alice.jpg",
+        "created_at": "2025-08-13T12:59:37.509Z"
+    }
+}</code>
+</pre>
+    </div>
+
+    <h3 class="request-type-title">POST REQUESTS</h3>
+
+    <div class="last-endpoint">
+      <p class="request">POST /api/properties/:id/reviews</p>
+      <br />
+      <br />
+      <p>Posts a new review associated with a given property:</p>
+      <br />
+      <pre class="code">
+<code>{
+    guest_id: 2,
+    rating: 5,
+    comment: "Amazing stay!",
+}</code>
+</pre>
+      <br />
+      <p>Responds with:</p>
+      <br />
+      <pre class="code">
+<code>{
+    "review": {
+        "review_id": 15,
+        "property_id": 2,
+        "guest_id": 2,
+        "rating": 5,
+        "comment": "Amazing stay!",
+        "created_at": "2025-08-14T14:43:31.906Z"
+    }
+}</code>
+</pre>
+    </div>
+
+    <h3 class="request-type-title">DELETE REQUESTS</h3>
+
+    <div class="last-endpoint">
+      <p class="request">DELETE /api/reviews/:id</p>
+      <br />
+      <br />
+      <p>Deletes review to match review_id. Responds with status code:</p>
+      <br />
+      <pre class="code">
+<code>204</code>
+</pre>
+    </div>
+  </body>
+</html>

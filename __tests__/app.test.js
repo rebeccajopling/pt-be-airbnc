@@ -338,7 +338,7 @@ describe("app", () => {
   });
 
   describe("DELETE - /api/reviews/:id", () => {
-    test("responds with status of 204 and deletes the  review", async () => {
+    test("responds with status of 204 and deletes the review", async () => {
       const propertyId = 2;
       const newReview = {
         guest_id: 2,

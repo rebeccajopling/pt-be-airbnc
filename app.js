@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const db = require("./db/connection");
 const {
   getAllProperties,
@@ -25,6 +26,11 @@ app.get("/api/users/:id", getUsers);
 app.post("/api/properties/:id/reviews", postPropertyReview);
 app.delete("/api/reviews/:id", deleteReview);
 
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.use(express.static(path.join(__dirname, "public")));
 app.use(handleBadRequests);
 app.use(handleCustomErrors);
 app.use(handlePathNotFound);
