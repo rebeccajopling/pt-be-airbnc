@@ -46,6 +46,7 @@ function formatPropertiesData(propertiesData, userArray) {
       property.location,
       property.price_per_night,
       property.description,
+      property.image_url,
     ];
   });
 }

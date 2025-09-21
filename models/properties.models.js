@@ -84,9 +84,27 @@ exports.fetchPropertyById = async (property_id) => {
     property_id,
     "Property Not Found"
   );
-  const queryString = "SELECT * FROM properties WHERE property_id = $1";
-  const queryValue = [property_id];
 
+  const queryString = `
+    SELECT 
+      properties.property_id,
+      properties.name,
+      properties.location,
+      properties.property_type,
+      properties.price_per_night,
+      properties.description,
+      properties.image_url,
+      users.first_name || ' ' || users.surname AS host_name,
+      CASE 
+        WHEN users.is_host = true THEN users.avatar
+        ELSE NULL
+      END AS avatar
+    FROM properties
+    JOIN users ON properties.host_id = users.user_id
+    WHERE properties.property_id = $1;
+  `;
+
+  const queryValue = [property_id];
   const { rows } = await db.query(queryString, queryValue);
   return rows[0];
 };

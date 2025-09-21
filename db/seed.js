@@ -40,7 +40,8 @@ async function seed(usersData, propertyTypesData, propertiesData, reviewsData) {
        location VARCHAR NOT NULL,
        property_type VARCHAR NOT NULL REFERENCES property_types(property_type),
        price_per_night DECIMAL NOT NULL,
-       description TEXT);`);
+       description TEXT,
+       image_url TEXT);`);
 
   // create reviews table
   await db.query(`CREATE TABLE reviews(
@@ -73,7 +74,7 @@ async function seed(usersData, propertyTypesData, propertiesData, reviewsData) {
   const { rows: properties } = await db.query(
     format(
       `INSERT INTO properties
-     (host_id, name, property_type, location, price_per_night, description)
+     (host_id, name, property_type, location, price_per_night, description, image_url)
      VALUES %L RETURNING *`,
       formattedPropertiesData
     )

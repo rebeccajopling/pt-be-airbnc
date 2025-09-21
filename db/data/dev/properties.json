@@ -6,7 +6,8 @@
     "price_per_night": 120.0,
     "description": "Description of Modern Apartment in City Center. A sleek apartment with all modern amenities.",
     "host_name": "Alice Johnson",
-    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine"]
+    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine"],
+    "image_url": "https://images.unsplash.com/photo-1727706572437-4fcda0cbd66f?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Cosy Family House",
@@ -15,7 +16,8 @@
     "price_per_night": 150.0,
     "description": "A spacious home perfect for families looking to explore the city.",
     "host_name": "Alice Johnson",
-    "amenities": ["WiFi", "TV", "Kitchen", "Parking", "Iron"]
+    "amenities": ["WiFi", "TV", "Kitchen", "Parking", "Iron"],
+    "image_url": "https://images.unsplash.com/photo-1613545325268-9265e1609167?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Chic Studio Near the Beach",
@@ -24,7 +26,8 @@
     "price_per_night": 90.0,
     "description": "A modern, cosy studio just steps away from the sea.",
     "host_name": "Alice Johnson",
-    "amenities": ["WiFi", "TV", "Mini fridge"]
+    "amenities": ["WiFi", "TV", "Mini fridge"],
+    "image_url": "https://images.unsplash.com/photo-1650772263831-41aa1b2c80d0?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Elegant City Apartment",
@@ -33,7 +36,8 @@
     "price_per_night": 110.0,
     "description": "Stylish apartment located in the heart of Birmingham, close to all attractions.",
     "host_name": "Emma Davis",
-    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine", "Iron"]
+    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine", "Iron"],
+    "image_url": "https://images.unsplash.com/photo-1720877851762-1fd589e96311?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Charming Studio Retreat",
@@ -42,7 +46,8 @@
     "price_per_night": 85.0,
     "description": "A peaceful studio perfect for solo travelers or couples.",
     "host_name": "Emma Davis",
-    "amenities": ["WiFi", "TV", "Coffee maker"]
+    "amenities": ["WiFi", "TV", "Coffee maker"],
+    "image_url": "https://images.unsplash.com/photo-1542853647-47ad77242390?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Luxury Penthouse with View",
@@ -59,7 +64,8 @@
       "Elevator",
       "Washing Machine",
       "Dryer"
-    ]
+    ],
+    "image_url": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Spacious Countryside House",
@@ -68,7 +74,8 @@
     "price_per_night": 200.0,
     "description": "A large country house with a beautiful garden and scenic views.",
     "host_name": "Isabella Martinez",
-    "amenities": ["WiFi", "Kitchen", "Fireplace", "Parking", "Garden"]
+    "amenities": ["WiFi", "Kitchen", "Fireplace", "Parking", "Garden"],
+    "image_url": "https://images.unsplash.com/photo-1727706572437-4fcda0cbd66f?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Seaside Studio Getaway",
@@ -77,7 +84,8 @@
     "price_per_night": 95.0,
     "description": "A quaint studio by the sea, perfect for a weekend escape.",
     "host_name": "Emma Davis",
-    "amenities": ["WiFi", "TV", "Beach access"]
+    "amenities": ["WiFi", "TV", "Beach access"],
+    "image_url": "https://images.unsplash.com/photo-1613545325268-9265e1609167?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Cosy Loft in the Heart of the City",
@@ -86,7 +94,8 @@
     "price_per_night": 130.0,
     "description": "A charming loft offering easy access to Manchester’s vibrant nightlife.",
     "host_name": "Isabella Martinez",
-    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine"]
+    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine"],
+    "image_url": "https://images.unsplash.com/photo-1650772263831-41aa1b2c80d0?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Quaint Cottage in the Hills",
@@ -95,7 +104,8 @@
     "price_per_night": 180.0,
     "description": "A cosy cottage nestled in the hills, ideal for nature lovers.",
     "host_name": "Isabella Martinez",
-    "amenities": ["Fireplace", "Kitchen", "Parking", "Garden", "WiFi"]
+    "amenities": ["Fireplace", "Kitchen", "Parking", "Garden", "WiFi"],
+    "image_url": "https://images.unsplash.com/photo-1720877851762-1fd589e96311?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Bright and Airy Studio",
@@ -104,7 +114,8 @@
     "price_per_night": 100.0,
     "description": "A well-lit, comfortable studio located in a quiet area of Cambridge.",
     "host_name": "Alice Johnson",
-    "amenities": ["WiFi", "TV", "Desk"]
+    "amenities": ["WiFi", "TV", "Desk"],
+    "image_url": "https://images.unsplash.com/photo-1542853647-47ad77242390?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Coastal Retreat with Garden",
@@ -113,7 +124,8 @@
     "price_per_night": 175.0,
     "description": "A charming house with a large garden, just a short walk from the beach.",
     "host_name": "Liam Connor",
-    "amenities": ["WiFi", "Kitchen", "Garden", "Parking", "BBQ"]
+    "amenities": ["WiFi", "Kitchen", "Garden", "Parking", "BBQ"],
+    "image_url": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Urban Loft with Modern Amenities",
@@ -128,7 +140,8 @@
       "Washing Machine",
       "Air conditioning",
       "Elevator"
-    ]
+    ],
+    "image_url": "https://images.unsplash.com/photo-1727706572437-4fcda0cbd66f?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Forest Hideaway Cabin",
@@ -137,7 +150,8 @@
     "price_per_night": 120.0,
     "description": "A secluded cabin surrounded by trees, perfect for a peaceful getaway.",
     "host_name": "Lucas Walker",
-    "amenities": ["Fireplace", "Kitchen", "WiFi", "Outdoor seating", "Parking"]
+    "amenities": ["Fireplace", "Kitchen", "WiFi", "Outdoor seating", "Parking"],
+    "image_url": "https://images.unsplash.com/photo-1613545325268-9265e1609167?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Seafront Villa with Infinity Pool",
@@ -153,7 +167,8 @@
       "Beach access",
       "Air conditioning",
       "BBQ"
-    ]
+    ],
+    "image_url": "https://images.unsplash.com/photo-1650772263831-41aa1b2c80d0?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Mountain View Chalet",
@@ -162,7 +177,8 @@
     "price_per_night": 160.0,
     "description": "A chalet offering stunning views of the mountains, ideal for winter retreats.",
     "host_name": "Ethan Harris",
-    "amenities": ["Fireplace", "Ski-in/Ski-out", "WiFi", "Kitchen"]
+    "amenities": ["Fireplace", "Ski-in/Ski-out", "WiFi", "Kitchen"],
+    "image_url": "https://images.unsplash.com/photo-1720877851762-1fd589e96311?q=80&w=3200&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Cosy Country Cottage",
@@ -171,7 +187,8 @@
     "price_per_night": 130.0,
     "description": "A charming cottage tucked away in the countryside, perfect for a weekend escape.",
     "host_name": "Ethan Harris",
-    "amenities": ["Fireplace", "Garden", "WiFi", "Parking", "Kitchen"]
+    "amenities": ["Fireplace", "Garden", "WiFi", "Parking", "Kitchen"],
+    "image_url": "https://images.unsplash.com/photo-1542853647-47ad77242390?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Stylish Loft in Shoreditch",
@@ -180,7 +197,8 @@
     "price_per_night": 220.0,
     "description": "A modern loft in a trendy area of London, surrounded by street art and restaurants.",
     "host_name": "Mason Roberts",
-    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine", "Work desk"]
+    "amenities": ["WiFi", "TV", "Kitchen", "Washing Machine", "Work desk"],
+    "image_url": "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Historic Castle Stay",
@@ -189,7 +207,8 @@
     "price_per_night": 500.0,
     "description": "A unique stay in a restored Scottish castle, with luxurious amenities and stunning views.",
     "host_name": "Isabella Martinez",
-    "amenities": ["WiFi", "Fireplace", "Banquet hall", "Library", "Gardens"]
+    "amenities": ["WiFi", "Fireplace", "Banquet hall", "Library", "Gardens"],
+    "image_url": "https://images.unsplash.com/photo-1502672023488-70e25813eb80?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   },
   {
     "name": "Lakeside Luxury Villa",
@@ -206,6 +225,7 @@
       "Fireplace",
       "BBQ",
       "Parking"
-    ]
+    ],
+    "image_url": "https://images.unsplash.com/photo-1613545325268-9265e1609167?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
   }
 ]

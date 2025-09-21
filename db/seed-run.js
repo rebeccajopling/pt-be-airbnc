@@ -1,3 +1,5 @@
+require("dotenv").config({ path: ".env.dev" });
+
 const seed = require("./seed");
 const {
   usersData,
