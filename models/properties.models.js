@@ -133,6 +133,13 @@ exports.fetchUsers = async (user_id) => {
   return rows[0];
 };
 
+exports.fetchPropertyTypes = async () => {
+  const queryString = `SELECT property_type, description FROM property_types;`;
+
+  const { rows } = await db.query(queryString);
+  return rows;
+};
+
 exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
   await checkExists(
     "properties",

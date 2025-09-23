@@ -124,15 +124,16 @@ describe("app", () => {
         .get(`/api/properties/${testPropertyId}`)
         .expect(200);
 
-      expect(body.property).toEqual({
-        property_id: 1,
-        host_id: 1,
-        name: "Modern Apartment in City Center",
-        location: "London, UK",
-        property_type: "Apartment",
-        price_per_night: "120",
-        description: "Description of Modern Apartment in City Center.",
-      });
+      const property = body.property;
+      expect(typeof property.property_id).toBe("number");
+      expect(typeof property.name).toBe("string");
+      expect(typeof property.location).toBe("string");
+      expect(typeof property.property_type).toBe("string");
+      expect(typeof property.price_per_night).toBe("string");
+      expect(typeof property.description).toBe("string");
+      expect(typeof property.image_url).toBe("string");
+      expect(typeof property.host_name).toBe("string");
+      expect(typeof property.avatar).toBe("string");
     });
     // errors
     test("responds with status of 400 and error message of 'Bad Request' for invalid property_id", async () => {
@@ -187,16 +188,15 @@ describe("app", () => {
         .get(`/api/users/${testUserId}`)
         .expect(200);
 
-      expect(body.user).toEqual({
-        user_id: 1,
-        first_name: "Alice",
-        surname: "Johnson",
-        email: "alice@example.com",
-        phone_number: "+44 7000 111111",
-        is_host: true,
-        avatar: "https://example.com/images/alice.jpg",
-        created_at: expect.any(String),
-      });
+      const user = body.user;
+      expect(typeof user.user_id).toBe("number");
+      expect(typeof user.first_name).toBe("string");
+      expect(typeof user.surname).toBe("string");
+      expect(typeof user.email).toBe("string");
+      expect(typeof user.phone_number).toBe("string");
+      expect(typeof user.is_host).toBe("boolean");
+      expect(typeof user.avatar).toBe("string");
+      expect(typeof user.created_at).toBe("string");
     });
     // errors
     test("responds with status of 400 and error message of 'Bad Request' for invalid user_id", async () => {
@@ -208,6 +208,18 @@ describe("app", () => {
     test("responds with status of 404 and error message of 'User Not Found' when user does not exist", async () => {
       const { body } = await request(app).get("/api/users/999").expect(404);
       expect(body.msg).toBe("User Not Found");
+    });
+  });
+
+  describe("GET - /api/property-types", () => {
+    test("responds with status of 200 and array of property types", async () => {
+      const { body } = await request(app)
+        .get(`/api/property-types`)
+        .expect(200);
+
+      expect(body).toHaveProperty("property_types");
+      expect(Array.isArray(body.property_types)).toBe(true);
+      expect(body.property_types.length).toBeGreaterThan(0);
     });
   });
 

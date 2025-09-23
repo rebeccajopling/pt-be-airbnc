@@ -5,6 +5,7 @@ const {
   getAllProperties,
   getPropertyById,
   getPropertyReviews,
+  getPropertyTypes,
   getUsers,
   postPropertyReview,
   deleteReview,
@@ -23,6 +24,7 @@ app.get("/api/properties", getAllProperties);
 app.get("/api/properties/:id", getPropertyById);
 app.get("/api/properties/:id/reviews", getPropertyReviews);
 app.get("/api/users/:id", getUsers);
+app.get("/api/property-types", getPropertyTypes);
 app.post("/api/properties/:id/reviews", postPropertyReview);
 app.delete("/api/reviews/:id", deleteReview);
 
