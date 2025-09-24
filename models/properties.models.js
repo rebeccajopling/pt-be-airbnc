@@ -17,8 +17,22 @@ exports.fetchAllProperties = async (
 ) => {
   if (property_type) {
     const validPropertyTypes = await this.getValidPropertyTypes();
-    if (!validPropertyTypes.includes(property_type)) {
-      return Promise.reject({ status: 400, msg: "Bad Request" });
+
+    if (Array.isArray(property_type)) {
+      const invalidTypes = [];
+      for (const type of property_type) {
+        if (!validPropertyTypes.includes(type)) {
+          invalidTypes.push(type);
+        }
+      }
+
+      if (invalidTypes.length > 0) {
+        return Promise.reject({ status: 400, msg: "Bad Request" });
+      }
+    } else {
+      if (!validPropertyTypes.includes(property_type)) {
+        return Promise.reject({ status: 400, msg: "Bad Request" });
+      }
     }
   }
 
@@ -31,38 +45,38 @@ exports.fetchAllProperties = async (
   }
 
   if (sort && sort !== "cost_per_night") {
-    return Promise.reject({
-      status: 400,
-      msg: "Bad Request",
-    });
+    return Promise.reject({ status: 400, msg: "Bad Request" });
   }
 
   let queryString = "SELECT * FROM properties";
   const queryValue = [];
+  const conditions = [];
 
   if (property_type) {
-    queryValue.push(property_type);
-    queryString += " WHERE property_type = $1";
+    if (Array.isArray(property_type)) {
+      const placeholders = property_type
+        .map((type, index) => `$${index + 1}`)
+        .join(", ");
+      conditions.push(`property_type IN (${placeholders})`);
+      queryValue.push(...property_type);
+    } else {
+      queryValue.push(property_type);
+      conditions.push(`property_type = $${queryValue.length}`);
+    }
   }
 
   if (minprice) {
-    if (queryValue.length) {
-      queryString += " AND";
-    } else {
-      queryString += " WHERE";
-    }
     queryValue.push(minprice);
-    queryString += ` price_per_night >= $${queryValue.length}`;
+    conditions.push(`price_per_night >= $${queryValue.length}`);
   }
 
   if (maxprice) {
-    if (queryValue.length) {
-      queryString += " AND";
-    } else {
-      queryString += " WHERE";
-    }
     queryValue.push(maxprice);
-    queryString += ` price_per_night <= $${queryValue.length}`;
+    conditions.push(`price_per_night <= $${queryValue.length}`);
+  }
+
+  if (conditions.length > 0) {
+    queryString += " WHERE " + conditions.join(" AND ");
   }
 
   if (sort === "cost_per_night") {
