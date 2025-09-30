@@ -4,6 +4,7 @@ const {
   fetchUsers,
   fetchPropertyById,
   fetchPropertyTypes,
+  fetchAllUsers,
   addPropertyReview,
   deleteReviewById,
 } = require("../models/properties.models");
@@ -59,6 +60,15 @@ exports.getPropertyTypes = async (req, res, next) => {
   try {
     const property_types = await fetchPropertyTypes();
     return res.status(200).send({ property_types });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.getAllUsers = async (req, res, next) => {
+  try {
+    const users = await fetchAllUsers();
+    return res.status(200).send({ users });
   } catch (err) {
     next(err);
   }

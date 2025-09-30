@@ -154,6 +154,12 @@ exports.fetchPropertyTypes = async () => {
   return rows;
 };
 
+exports.fetchAllUsers = async () => {
+  const queryString = `SELECT first_name, surname, is_host, avatar FROM users;`;
+  const { rows } = await db.query(queryString);
+  return rows;
+};
+
 exports.addPropertyReview = async (property_id, guest_id, rating, comment) => {
   await checkExists(
     "properties",
