@@ -155,7 +155,7 @@ exports.fetchPropertyTypes = async () => {
 };
 
 exports.fetchAllUsers = async () => {
-  const queryString = `SELECT first_name, surname, is_host, avatar FROM users;`;
+  const queryString = `SELECT user_id, first_name, surname, is_host, avatar FROM users;`;
   const { rows } = await db.query(queryString);
   return rows;
 };
