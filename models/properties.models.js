@@ -108,6 +108,7 @@ exports.fetchPropertyById = async (property_id) => {
       properties.price_per_night,
       properties.description,
       properties.image_url,
+      properties.host_id,
       users.first_name || ' ' || users.surname AS host_name,
       CASE 
         WHEN users.is_host = true THEN users.avatar
