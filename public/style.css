@@ -11,71 +11,100 @@ body {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-size: 0.8rem;
   font-weight: 400;
+  color: #16332f;
+  margin-bottom: 3.5rem;
 }
 
 header {
-  background-color: #fbfbfb;
-  padding: 25px 45px;
-  width: 100%;
-  border-bottom: 1px solid #e6e7e8;
+  background-color: #16332f;
+  color: #fff;
+  padding: 4rem 5rem;
 }
 
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-h1,
-h2 {
-  font-family: "Plus Jakarta Sans", sans-serif;
+h1 {
   letter-spacing: 0.01em;
   font-weight: 600;
-  font-size: 1.5rem;
+  font-size: 2.75rem;
 }
 
 h2 {
-  font-weight: 400;
-  font-size: 1rem;
+  margin-top: 0.4rem;
+  font-weight: 550;
+  font-size: 0.85rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+}
+
+h3 {
+  margin: 0 5rem;
+  padding: 3.5rem 0 0.5rem;
+  letter-spacing: 0.08rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border-bottom: 3px solid #ceefee;
+}
+
+p,
+ul {
+  margin-left: 5rem;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.02rem;
 }
 
 ul {
-  padding-top: 5px;
-  padding-left: 15px;
+  margin-left: 6rem;
 }
 
-.request-type-title {
-  padding: 30px 45px;
-  border-bottom: 1px solid #e6e7e8;
-  letter-spacing: 0.05rem;
-  font-weight: 600;
-  font-size: 1rem;
+.request,
+.code {
+  font-family: "Google Sans Code", monospace;
+  border-radius: 2.5px;
 }
 
 .request {
+  display: inline-block;
   background-color: #fbfbfb;
   border: 1px solid #e6e7e8;
-  padding: 10px 15px;
-  border-radius: 6px;
-  font-family: "Google Sans Code", monospace;
-  font-size: 0.8rem;
-  display: inline-block;
-}
-
-.endpoint {
-  padding: 30px 45px 0 45px;
-}
-
-.last-endpoint {
-  padding: 30px 45px 45px 45px;
-  border-bottom: 1px solid #e6e7e8;
+  padding: 1.2rem 1.8rem;
+  font-weight: 450;
+  font-size: 0.85rem;
+  letter-spacing: 0.04rem;
+  margin-top: 2.5rem;
 }
 
 .code {
-  background-color: #d8eabb;
-  padding: 15px;
-  border-radius: 6px;
-  font-family: "Google Sans Code", monospace;
+  background-color: #ceefee;
+  padding: 2rem 2.25rem;
   white-space: pre-wrap;
-  font-size: 0.7rem;
+  font-weight: 150;
+  font-size: 0.8rem;
+  margin: 0 5rem;
+}
+
+@media (max-width: 480px) {
+  header {
+    padding: 3.5rem 2rem;
+  }
+
+  h3 {
+    margin: 0 2rem;
+  }
+
+  p,
+  ul,
+  .request,
+  .code {
+    margin-left: 2rem;
+  }
+
+  p,
+  .code {
+    margin-right: 2rem;
+  }
+
+  ul {
+    margin-left: 3rem;
+  }
 }
