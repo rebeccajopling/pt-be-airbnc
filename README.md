@@ -2,38 +2,77 @@
   <img src="./assets/airbnc_banner_be.png" alt="airbnc banner" width="1000"/>
 </p>
 
-<br>
-AirBnC is the back-end API of a full stack property booking application, connected to a custom React front end interface: [<link>](https://github.com/rebeccajopling/pt-fe-airbnc)
+AirBnC is the back-end API of a full stack property booking application, connected to a React front end interface: [pt-fe-airbnc](https://github.com/rebeccajopling/pt-fe-airbnc)
 
-It is built with Node.js, Express, and PostgreSQL, and supports features like property listings, property reviews and user accounts. The database is hosted on Supabase and deployed on Render.
-<br>
+It is built with Node.js, Express, and PostgreSQL, and supports features like property listings, property reviews, and user accounts. The database is hosted on Supabase and deployed on Render.
 
-#### Live Site
+#### Live API
 
 ---
 
-🔗 [<link>](https://airbnc-ez73.onrender.com/)
+🔗 [AirBnC Available Endpoints](https://airbnc-ez73.onrender.com/)
 <br>
 
-### 1. Create the Database
+#### Getting Started
 
-Create the local databases (test and dev) by running this command:
+---
 
-`npm run setup-dbs`
+#### 1. Install Dependencies
 
-### 2. Set Up Environment Variables
+Install all project dependencies:
 
-Create a .env file and add the following:
+`npm install`
 
-`PGDATABASE=airbnc_test`
+#### 2. Create the Database
 
-### 3. Connect the Database
+Create the test and development local databases:
 
-Create a connection.js file to manage the connection:
+```
+npm run setup-dbs
+```
 
-```js
-const { Pool } = require("pg");
-require("dotenv").config();
-const pool = new Pool();
-module.exports = pool;
+#### 3. Set Up Environment Variables
+
+Create two .env files, `.env.test` and `.env.dev`, to store database credentials.
+
+Add to `.env.test`:
+
+```
+PGDATABASE=airbnc_test
+```
+
+Add to `.env.dev`:
+
+```
+PGDATABASE=airbnc
+```
+
+Add `.env*` to `.gitignore`.
+
+#### 4. Seed the Database
+
+Seed the development database:
+
+```
+npm run seed
+```
+
+The test database seeds automatically.
+
+#### 5. Start the Server
+
+Start the local server:
+
+```
+npm run dev
+```
+
+Open `localhost:9090` in your browser or an API client (e.g., Postman) to explore different endpoints.
+
+#### 6. Run Tests
+
+Ensure all tests pass successfully:
+
+```
+npm test
 ```
