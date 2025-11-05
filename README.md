@@ -2,18 +2,19 @@
   <img src="./assets/airbnc_banner_be.png" alt="airbnc banner" width="1000"/>
 </p>
 
-AirBnC is the back-end API of a full stack property booking application, connected to a React front end interface: [pt-fe-airbnc](https://github.com/rebeccajopling/pt-fe-airbnc)
+AirBnC is the back end API of a full stack property booking application, connected to a React front end interface: [pt-fe-airbnc](https://github.com/rebeccajopling/pt-fe-airbnc)
 
 It is built with Node.js, Express, and PostgreSQL, and supports features like property listings, property reviews, and user accounts. The database is hosted on Supabase and deployed on Render.
+<br>
 
-#### Live API
+### Live API
 
 ---
 
 🔗 [AirBnC Available Endpoints](https://airbnc-ez73.onrender.com/)
 <br>
 
-#### Getting Started
+### Getting Started
 
 ---
 
@@ -21,7 +22,9 @@ It is built with Node.js, Express, and PostgreSQL, and supports features like pr
 
 Install all project dependencies:
 
-`npm install`
+```
+npm install
+```
 
 #### 2. Create the Database
 
